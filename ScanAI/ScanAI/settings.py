@@ -42,7 +42,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'tailwind',
     'theme',
-    'django_browser_reload'
+    'django_browser_reload',
+    'image_uploader_widget'
+
 ]
 
 MIDDLEWARE = [

@@ -1,0 +1,39 @@
+{% load widget_tweaks %}
+
+<div class="image-uploader-widget">
+    {% render_field widget %}
+    <label for="{{ widget.attrs.id }}" class="image-uploader-button">Choose File</label>
+</div>
+
+<style>
+    .image-uploader-widget {
+        position: relative;
+        width: 150px; /* Adjust width as needed */
+        height: 150px; /* Adjust height as needed */
+        border-radius: 50%;
+        overflow: hidden;
+        border: 2px solid #ccc; /* Border style */
+    }
+
+    .image-uploader-widget input[type="file"] {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    .image-uploader-button {
+        position: absolute;
+        bottom: 8px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #fff; /* Button background color */
+        padding: 6px 12px; /* Adjust padding as needed */
+        border-radius: 4px;
+        border: 1px solid #ccc; /* Button border style */
+        cursor: pointer;
+    }
+</style>
