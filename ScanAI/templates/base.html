@@ -1,0 +1,30 @@
+{% load static tailwind_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock title %}</title>
+    {% block css %}{% endblock css %}
+    {% tailwind_css %}
+</head>
+<body>
+    <div class = "h-[100vh] bg-black" >
+
+        <header >
+            <nav class = "px-4 py-4 text-black flex justify-between">
+                <p class= "text-white"><a href="{% url 'home' %}">ScanAI</a></p>
+                <ul class =  "flex ">
+                    <li class= "mx-5 text-white"><a href="{% url 'home' %}">Home</a></li>
+                    <li class= "mx-5 text-white"><a href="{% url 'diagnose' %}">Diagnose</a></li>
+                    <li class= "mx-5 text-white"><a href="">About</a></li>
+                    <li class= "mx-5 text-white"><a href="">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+        {% block body %}{% endblock body %}
+    </div>
+    
+</body>
+</html>

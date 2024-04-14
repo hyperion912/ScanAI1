@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block css %}
+<style>
+    @layer utilities {
+        .glow-text {
+            text-shadow: 0 0 40px rgba(255, 255, 255, 0.7); /* Adjust the glow color and intensity here */
+        }
+    }
+</style>
+
+
+{% endblock css %}
+
+{% block title %}
+    ScanAI
+{% endblock title %}
+
+
+{% block body %}
+<div class="mt-56 flex flex-col justify-center items-center">
+    <h1 class="mb-4 text-9xl text-white font-sans font-bold glow-text">ScanAI</h1>
+    <h3 class="text-white font-sans font-semibold text-2xl glow-text">Empowering Health through Intelligent Scans</h3>
+    <div class="relative inline-flex  group mt-7">
+        <div
+            class="absolute transitiona-all duration-1000 opacity-70 -inset-px bg-gradient-to-r from-[#44BCFF] via-[#FF44EC] to-[#FF675E] rounded-xl blur-lg group-hover:opacity-100 group-hover:-inset-1 group-hover:duration-200 animate-tilt">
+        </div>
+        <a href="{% url 'diagnose' %}" title="Try Now"
+            class="relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white transition-all duration-200 bg-gray-900 font-pj rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"
+            role="button">Try Now
+        </a>
+    </div>
+</div>
+
+{% endblock body %}

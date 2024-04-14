@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block body %}
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 relative min-h-screen justify-center overflow-hidden bg-gray-100 py-6 sm:py-12">
+        
+        {% include 'diagnose/includes/placard.html' with url_name='alzheimer' para='Alzheimer'%}
+        {%include "diagnose/includes/placard.html"%}
+        {%include "diagnose/includes/placard.html"%}
+        {%include "diagnose/includes/placard.html"%}
+        {%include "diagnose/includes/placard.html"%}
+    </div>
+
+{% endblock body %}
