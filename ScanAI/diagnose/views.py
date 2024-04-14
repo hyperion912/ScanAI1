@@ -42,7 +42,7 @@ class AlzheimerResultView(View):
     def get(self, request):
         file_name = request.session.get('file_name', None)
         classes = ['Mild_Demented', 'Moderate_Demented', 'Non_Demented', 'Very_Mild_Demented']
-        model = tf.saved_model.load('/home/abhishek/Desktop/ai_project/ScanAI/models/Alzheimer_model_savedmodel')
+        model = tf.saved_model.load('/home/abhishek/Desktop/ai_project1/ScanAI/models/Alzheimer_model_savedmodel')
 
         def preprocess_image(image_path):
             img = image.load_img(image_path, target_size=(224, 224))
@@ -51,7 +51,7 @@ class AlzheimerResultView(View):
             return img_array
 
         # Path to your individual image
-        image_path =  "/home/abhishek/Desktop/ai_project/ScanAI/media/alzheimer/" + file_name
+        image_path =  "/home/abhishek/Desktop/ai_project1/ScanAI/media/alzheimer/" + file_name
 
         # Preprocess the image
         preprocessed_image = preprocess_image(image_path)
