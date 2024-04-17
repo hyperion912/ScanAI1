@@ -21,4 +21,14 @@ class BrainTumorImages(models.Model):
             return  # File already exists, no need to save again
         super().save(*args, **kwargs)
 
+class TbImages(models.Model):
+    image = models.ImageField(upload_to="tb")
+
+
+    def save(self, *args, **kwargs):
+        # Check if the file already exists before saving
+        if self.image and os.path.exists(self.image.path):
+            return  # File already exists, no need to save again
+        super().save(*args, **kwargs)
+
  

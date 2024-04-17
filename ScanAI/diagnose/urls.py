@@ -9,4 +9,7 @@ urlpatterns = [
     path('alzheimer_result/', views.AlzheimerResultView.as_view(), name='alzheimer_result'),
     path('brain_tumor/', views.BrainTumorView.as_view(), name='brain_tumor'),
     path('brain_tumor_result/', views.BrainTumorResultView.as_view(), name='brain_tumor_result'),
+    path('tuberculosis/', views.TbView.as_view(), name='tb'),
+    path('tuberculosis_result/', views.TbResultView.as_view(), name='tb_result')
+
 ]

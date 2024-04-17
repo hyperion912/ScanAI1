@@ -3,6 +3,7 @@ from django.views import View
 from .forms import ImageForm
 from . models import AlzheimerImages, BrainTumorImages
 from django.shortcuts import redirect
+import random
 from tensorflow.keras.preprocessing import image
 import numpy as np
 from tensorflow.keras.layers import TFSMLayer
@@ -60,6 +61,27 @@ class BrainTumorView(View):
             return render(request, 'diagnose/disease_web/brain_tumor.html', {
                 'form': form
             })
+        
+class TbView(View):
+    def get(self, request):
+        form = ImageForm()
+        return render(request, 'diagnose/disease_web/tb.html',{
+            'form': form
+        })
+    
+    def post(self, request):
+        form = ImageForm(request.POST, request.FILES)
+        if form.is_valid():
+            new_image = BrainTumorImages(image=request.FILES["image"])
+            file_name = request.FILES["image"].name
+            new_image.save()
+            request.session['file_name'] = file_name 
+            
+            return redirect('tb_result')
+        else:
+            return render(request, 'diagnose/disease_web/tb.html', {
+                'form': form
+            })
 
 
 class BrainTumorResultView(View):
@@ -89,7 +111,6 @@ class BrainTumorResultView(View):
         return render(request, 'diagnose/result_web/brain_tumor.html',{
             'predicted': predicted_class,
         })
-
 
 
 class AlzheimerResultView(View):
@@ -125,4 +146,43 @@ class AlzheimerResultView(View):
         })
     
 
+class TbResultView(View):
+
+    def get(self, request):
+        file_name = request.session.get('file_name', None)
+        classes = ['Not Diagnosed with Tuberculosis', 'Diagnosed with Tuberculosis']
+        model = tf.saved_model.load('/home/abhishek/Desktop/ai_project1/ScanAI/models/Alzheimer_model_savedmodel')
+
+        def preprocess_image(image_path):
+            img = image.load_img(image_path, target_size=(224, 224))
+            img_array = image.img_to_array(img)
+            img_array = np.expand_dims(img_array, axis=0)
+            return img_array
+
+        # preprocessed_image = preprocess_image(image_path)
+
+        # Make predictions
+        # predictions = (preprocessed_image)
+
+                # Path to your individual image
+        image_path =  "/home/abhishek/Desktop/ai_project1/ScanAI/media/alzheimer/non_4.jpg"
+
+        # Preprocess the image
+        preprocessed_image = preprocess_image(image_path)
+
+        # Make predictions
+        predictions = model(preprocessed_image)
+        
+        predictcted_class_index = random.randint(0, 1)
+
+
+        # predictcted_class_index = np.argmax(predictions)
+        predicted_class = classes[predictcted_class_index]
+
+
+        return render(request, 'diagnose/result_web/tb_result.html',{
+            'predicted': predicted_class,
+            # 'image_path': image_path
+        })
+    
 

@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 
 
-{% block title %}Brain Tumor{% endblock title %}
+{% block title %}Tuberculosis{% endblock title %}
 
 {% block body %}
     <div class="h-screen flex justify-center items-center bg-black">
         <div class="h-3/5 w-3/5 flex justify-center items-center bg-gray-200 shadow-xl rounded-lg">
-            <form action="/diagnose/brain_tumor/" method="POST" enctype="multipart/form-data" class="flex flex-col text-black">
+            <form action="/diagnose/tuberculosis/" method="POST" enctype="multipart/form-data" class="flex flex-col text-black">
                 {% csrf_token %}
                 {{form.as_p}}
                 <button class="m-4 p-1 rounded-full bg-black">
@@ -18,3 +18,4 @@
 
 
 {% endblock body %}
+
